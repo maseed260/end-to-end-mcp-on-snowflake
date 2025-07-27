@@ -207,14 +207,15 @@ async def text_to_sql(query: str):
             text, sql, citations = await process_sse_response(resp)
 
     # 3) If SQL was generated, execute it
+    # fill below details
     connection_parameters = {
-        "account": "RYWNENJ-SAB31173",
-        "user": "ILYAS",
-        "password": "IlyasMaseed@260",
-        "warehouse": "COMPUTE_WH",
-        "role":"ACCOUNTADMIN",
-        "database":"ILYAS_DB",
-        "schema":"DEMO"
+        "account": "",
+        "user": "",
+        "password": "",
+        "warehouse": "",
+        "role":"",
+        "database":"",
+        "schema":""
     }
 
     session = Session.builder.configs(connection_parameters).create()
