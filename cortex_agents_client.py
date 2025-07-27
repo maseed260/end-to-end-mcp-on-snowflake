@@ -320,11 +320,6 @@ async def run(input_query: str):
         traceback.print_exc()
 
 if __name__ == "__main__":
-    # input_query = "What is the total product gross revenue across the US?"
-    # input_query = "Tell me an interesting fact about F1 cars"  
-    # final_response = asyncio.run(run(input_query))
-    # print("Final response:", final_response)
-
     st.set_page_config(page_title="Cortex Chatbot", page_icon="🤖")
 
     st.title("🔗 Cortex Tool-Calling Chatbot")
