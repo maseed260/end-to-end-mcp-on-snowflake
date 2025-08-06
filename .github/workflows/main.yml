@@ -1,0 +1,45 @@
+name: Secure Code Review with Snowflake Cortex
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  cortex_review:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+      
+    - name: Install dependencies
+      run: |
+        pip install snowflake-connector-python
+
+    - name: Extract PR diff
+      id: diff
+      run: |
+        git fetch origin ${{ github.event.pull_request.base.ref }}
+        git diff origin/${{ github.event.pull_request.base.ref }}...HEAD > diff.patch
+
+    - name: Run Snowflake Cortex Review
+      id: cortex_review
+      env:
+        SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+        SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+        SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+        SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+      run: |
+        python scripts/run_cortex_review.py
+
+    - name: Post Review Comment
+      uses: peter-evans/create-or-update-comment@v4
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body: ${{ steps.cortex_review.outputs.review }}
