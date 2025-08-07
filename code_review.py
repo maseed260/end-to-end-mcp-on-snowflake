@@ -43,7 +43,7 @@ Here is the file content to review:
 # Connect to Snowflake
 conn = snowflake.connector.connect(
     user="ilyas",
-    password="IlyasMaseed@260",
+    password="",
     account="TVNZMTQ-XCA13477",
     warehouse="COMPUTE_WH",
     database="DEMO",
