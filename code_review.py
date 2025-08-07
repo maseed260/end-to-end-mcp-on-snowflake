@@ -6,7 +6,39 @@ import snowflake.connector
 with open('cortex_agents.py', 'r') as file:
     code_to_review = file.read()
 
-prompt = f"Please provide a detailed code review for the following Python file 'cortex_agents.py':\n{code_to_review}"
+prompt = f"""
+You are an expert Python code reviewer with experience in production systems, security, and best practices.
+
+I am sharing the full contents of a Python source file named 'cortex_agents.py'. Please analyze it and provide a comprehensive, structured code review using the following format for each of the categories below:
+
+For each category (1-9), do all of the following:
+- Give a brief assessment of how well the code performs in that area
+- **Rate the code on a scale from 1 (Poor) to 5 (Excellent)**
+- **List specific strengths**
+- **List concrete weaknesses or areas for improvement**
+- **Suggest detailed improvements or refactorings** (with code snippets where helpful)
+
+Categories:
+
+1. **Summary of the File:** Brief explanation of what the file does.
+2. **Correctness**
+3. **Security**
+4. **Performance**
+5. **Clarity & Readability**
+6. **Python Best Practices**
+7. **Testability & Robustness**
+8. **Actionable Suggestions**
+9. **Potential Enhancements**
+
+After the category-by-category review:
+- Provide a final summary **overall rating** for the code (with explanation).
+
+Respond in a clear, structured format using headings for each section and bullet points where appropriate.
+Here is the file content to review:
+
+{code_to_review}
+
+"""
 
 # Connect to Snowflake
 conn = snowflake.connector.connect(
