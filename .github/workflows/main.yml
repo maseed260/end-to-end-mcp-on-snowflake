@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, synchronize]
   workflow_dispatch:
+    inputs:
+      issue-number:
+        description: 'PR or Issue number to comment on'
+        required: false
 
 jobs:
   cortex_review:
@@ -43,3 +47,10 @@ jobs:
       with:
         name: cortex-review
         path: full_review.md
+
+    - name: Post Review Comment
+      if: ${{ github.event.pull_request.number || github.event.inputs.issue-number }}
+      uses: peter-evans/create-or-update-comment@v4
+      with:
+        issue-number: ${{ github.event.pull_request.number || github.event.inputs.issue-number }}
+        body: ${{ steps.cortex_review.outputs.review }}
