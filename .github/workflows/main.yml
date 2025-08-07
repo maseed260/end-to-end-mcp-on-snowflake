@@ -37,3 +37,9 @@ jobs:
     #   with:
     #     issue-number: ${{ github.event.pull_request.number }}
     #     body: ${{ steps.cortex_review.outputs.review }}
+
+    - name: Upload full review artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: cortex-review
+        path: full_review.md
