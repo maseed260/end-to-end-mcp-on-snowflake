@@ -1,11 +1,11 @@
 import os
 import snowflake.connector
 
-# Read the code diff from file
-with open('diff.patch', 'r') as file:
-    code_diff = file.read()
+# Read the contents of 'cortex_agents.py'
+with open('cortex_agents.py', 'r') as file:
+    code_to_review = file.read()
 
-prompt = f"Please provide a detailed code review for the following diff:\n{code_diff}"
+prompt = f"Please provide a detailed code review for the following Python file 'cortex_agents.py':\n{code_to_review}"
 
 # Connect to Snowflake
 conn = snowflake.connector.connect(
