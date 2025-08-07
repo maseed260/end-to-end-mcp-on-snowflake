@@ -9,6 +9,7 @@ import asyncio
 import uuid
 import httpx
 import requests
+import sys
 load_dotenv(find_dotenv())
 
 # Initialize FastMCP server
@@ -16,7 +17,6 @@ mcp = FastMCP("cortex_agent")
 
 # Constants
 SEMANTIC_MODEL_FILE = os.getenv("SEMANTIC_MODEL_FILE")
-CORTEX_SEARCH_SERVICE = os.getenv("CORTEX_SEARCH_SERVICE")
 SNOWFLAKE_ACCOUNT_URL = os.getenv("SNOWFLAKE_ACCOUNT_URL")
 SNOWFLAKE_PAT = os.getenv("SNOWFLAKE_PAT")
 
@@ -233,3 +233,5 @@ async def text_to_sql(query: str):
 if __name__ == "__main__":
     mcp.run(transport='stdio')
     #mcp.run(transport='http', host='0.0.0.0', port=8000)
+
+

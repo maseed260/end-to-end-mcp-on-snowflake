@@ -19,6 +19,6 @@ COPY cortex_agents.py .
 COPY cortex_agents_client.py .
 COPY .env .
 
-
 EXPOSE 8501
 CMD ["streamlit", "run", "cortex_agents_client.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
