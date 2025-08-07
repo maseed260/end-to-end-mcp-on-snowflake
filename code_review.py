@@ -9,12 +9,12 @@ prompt = f"Please provide a detailed code review for the following diff:\n{code_
 
 # Connect to Snowflake
 conn = snowflake.connector.connect(
-    user=os.environ['SNOWFLAKE_USER'],
-    password=os.environ['SNOWFLAKE_PASSWORD'],
-    account=os.environ['SNOWFLAKE_ACCOUNT'],
-    warehouse=os.environ['SNOWFLAKE_WAREHOUSE'],
-    database=os.environ['SNOWFLAKE_DATABASE'],
-    schema=os.environ['SNOWFLAKE_SCHEMA']
+    user="ilyas",
+    password="IlyasMaseed@260",
+    account="TVNZMTQ-XCA13477",
+    warehouse="COMPUTE_WH",
+    database="DEMO",
+    schema="PUBLIC"
 )
 
 cs = conn.cursor()
