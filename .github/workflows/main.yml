@@ -30,7 +30,7 @@ jobs:
     - name: Run Snowflake Cortex Review
       id: cortex_review
       run: |
-        python scripts/run_cortex_review.py
+        python scripts/code_review.py
 
     - name: Post Review Comment
       uses: peter-evans/create-or-update-comment@v4
