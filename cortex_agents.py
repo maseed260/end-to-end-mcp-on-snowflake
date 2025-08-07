@@ -9,6 +9,7 @@ import asyncio
 import uuid
 import httpx
 import requests
+import sys
 load_dotenv(find_dotenv())
 
 # Initialize FastMCP server
@@ -232,4 +233,5 @@ async def text_to_sql(query: str):
 if __name__ == "__main__":
     mcp.run(transport='stdio')
     #mcp.run(transport='http', host='0.0.0.0', port=8000)
+
 
