@@ -1,4 +1,5 @@
 import os
+import uuid
 import snowflake.connector
 
 # Read the contents of 'cortex_agents.py'
@@ -27,5 +28,9 @@ cs.execute(query, (prompt,))
 review = cs.fetchone()[0]
 print(review)
 # Save review as a GitHub Action output if needed
+delimiter = str(uuid.uuid4())
+
 with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_out:
-    gh_out.write(f"review={review}\n")
+    gh_out.write(f'review<<{delimiter}\n')
+    gh_out.write(f'{review}\n')
+    gh_out.write(f'{delimiter}\n')
