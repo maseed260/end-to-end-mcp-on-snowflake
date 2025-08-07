@@ -32,8 +32,8 @@ jobs:
       run: |
         python code_review.py
 
-    - name: Post Review Comment
-      uses: peter-evans/create-or-update-comment@v4
-      with:
-        issue-number: ${{ github.event.pull_request.number }}
-        body: ${{ steps.cortex_review.outputs.review }}
+    # - name: Post Review Comment
+    #   uses: peter-evans/create-or-update-comment@v4
+    #   with:
+    #     issue-number: ${{ github.event.pull_request.number }}
+    #     body: ${{ steps.cortex_review.outputs.review }}
