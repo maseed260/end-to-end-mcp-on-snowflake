@@ -62,6 +62,14 @@ print(review)
 # Save review as a GitHub Action output if needed
 delimiter = str(uuid.uuid4())
 
+max_github_comment_length = 60000
+short_review = review[:max_github_comment_length]
+if len(review) > max_github_comment_length:
+    short_review += "\n\n---\n**This review is truncated. The full review is available as a workflow artifact.**"
+with open('full_review.md', 'w') as f:
+    f.write(review)
+
+# The rest: write short_review to GITHUB_OUTPUT as before
 with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_out:
     gh_out.write(f'review<<{delimiter}\n')
     gh_out.write(f'{review}\n')
