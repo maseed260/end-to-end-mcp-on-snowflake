@@ -3,6 +3,7 @@ name: Secure Code Review with Snowflake Cortex
 on:
   pull_request:
     types: [opened, synchronize]
+  workflow_dispatch:
 
 jobs:
   cortex_review:
